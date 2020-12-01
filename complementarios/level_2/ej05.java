@@ -12,9 +12,24 @@ public class ej05 {
         System.out.println("\n--------Horas trabajadas por día--------");
         for (int i = 0; i < 5; i++) 
         {
-            System.out.print("Ingrese las horas trabajads del " + dias[i] + ": ");
-            Float hour = scan.nextFloat();
-            hours.add(hour);
+            boolean error = true;
+            float hour;
+            do {
+                try {
+                    System.out.print("Ingrese las horas trabajads del " + dias[i] + ": ");
+                    hour = scan.nextFloat();
+                    if(hour < 0) {
+                        System.out.println("\nIngrese horas trabajadas mayores a cero.");
+                    } else {
+                        hours.add(hour);
+                        error = false;
+                    }
+                } catch (Exception e) {
+                    System.out.println("\nIngrese horas validas.");
+                    scan.nextLine();
+                }
+            } while(error);
+            
         }
     }
 
@@ -23,9 +38,25 @@ public class ej05 {
         System.out.println("\n--------Valor de hora por día--------");
         for (int i = 0; i < 5; i++) 
         {
-            System.out.print("Ingrese el valor de hora del " + dias[i] + ": ");
-            Float value = scan.nextFloat();
-            values.add(value);
+            boolean error = true;
+            float value;
+            do {
+                try {
+                    System.out.print("Ingrese el valor de hora del " + dias[i] + ": ");
+                    value = scan.nextFloat();
+                    if(value < 0) {
+                        System.out.println("\nIngrese valor de horas mayor a cero.");
+                    } else {
+                        values.add(value);
+                        error = false;
+                    }
+                    
+                } catch (Exception e) {
+                    System.out.println("\nIngrese valor de horas valido.");
+                    scan.nextLine();
+                }
+            } while(error);
+            
         }
     }
 
@@ -39,8 +70,8 @@ public class ej05 {
 
     static Float getPaymentWeekly(ArrayList<Float> payments) 
     {
-        Float payment = 0F;
-        for (Float pay : payments) 
+        float payment = 0F;
+        for (float pay : payments) 
         {
             payment += pay;
         }

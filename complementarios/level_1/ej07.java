@@ -11,23 +11,21 @@ public class ej07 {
 
         int posicion = 0;
         String palabra_mayuscula = "";
+        int n = palabra.length();
 
-        for (int i = 0; i < palabra.length(); i++) 
+        for (int i = 0; i < n; i++) 
         {
-            for (int j = 0; j < minusculas.length; j++) 
+            int j = 0;
+            while(palabra.charAt(i) != minusculas[j]) 
             {
-                if(palabra.charAt(i) == minusculas[j]) 
-                {
-                    posicion = j;  
-                    break;
-                }
-            } 
+                j++;
+            }
+            posicion = j;
             palabra_mayuscula += mayusculas[posicion];
         }
         return palabra_mayuscula;
     }
     
-
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.print("\nIngrese la palabra a convertir a mayuscula: ");

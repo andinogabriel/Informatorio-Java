@@ -8,15 +8,11 @@ Ciudad
 Luego imprimirá el siguiente mensaje:
 {Ciudad} - {Dirección} - {Edad} - {Nombre y Apellido} */ 
 public class ej08 {
+    
+    private static Scanner scan = new Scanner(System.in);
 
-    static void datosPersonales(String ciudad, String direccion, int edad, String nombre, String apellido) 
+    static String datosPersonales() 
     {
-        System.out.println(ciudad + " - " + direccion + " - " + edad + " - " + nombre + " " + apellido);
-    }
-
-    public static void main(String[] args) 
-    {
-        Scanner scan = new Scanner(System.in);
         System.out.print("\nIngrese su apellido: ");
         String apellido = scan.nextLine();
         System.out.print("Ingrese el nombre de " + apellido + ": ");
@@ -25,11 +21,30 @@ public class ej08 {
         String ciudad = scan.nextLine();
         System.out.print("Ingrese la dirección de " + apellido + " " +nombre + ": ");
         String direccion = scan.nextLine();
-        System.out.print("Ingrese la edad de " + apellido + " " +nombre + ": ");
-        int edad = scan.nextInt();
+        int edad = 0;
+        boolean error = true;
+        do {
+            try {
+                System.out.print("Ingrese la edad de " + apellido + " " +nombre + ": ");
+                edad = scan.nextInt();
+                if(edad < 0) {
+                    System.out.println("\nIngrese una edad mayor que cero.");
+                } else {
+                    error = false;
+                }
+            } catch (Exception e) {
+                System.out.println("\nError. Ingrese una edad valida.");
+                scan.nextLine();
+            }
+        } while(error);
         scan.close();
-        datosPersonales(ciudad, direccion, edad, nombre, apellido); 
-        System.out.print("\n\n");
+        String mensaje = ciudad + " - " + direccion + " - " + edad + " - " + nombre + " " + apellido;
+        return mensaje;
+    }
+
+    public static void main(String[] args) 
+    {
+        System.out.println("\n" + datosPersonales() + "\n");
     }
     
 }

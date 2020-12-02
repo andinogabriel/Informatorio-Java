@@ -11,13 +11,21 @@ public class ej02 {
         System.out.println("\nAgregar elementos al array");
         for (int i = 0; i < 5; i++) 
         {
-            System.out.printf("Ingrese el %dº numero: ", i+1);
-            int number = scan.nextInt();
-            numbers.add(number);
+            boolean error = true;
+            do {
+                try {
+                    System.out.printf("Ingrese el %dº numero: ", i+1);
+                    int number = scan.nextInt();
+                    numbers.add(number);
+                    error = false;
+                } catch (Exception e) {
+                    System.out.println("\nError. Ingrese solo numeros.");
+                    scan.nextLine();
+                }
+            } while(error);
         }
     }
 
-   
     public static void main(String[] args) {
         ArrayList<Integer> numbers = new ArrayList<Integer>();
         addNumbers(numbers);
